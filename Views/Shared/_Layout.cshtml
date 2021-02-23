@@ -64,6 +64,14 @@
         <div class="topnav-right">
             <a asp-action="Login" asp-controller="Account"><i class="fa fa-fw fa-user"></i></a>
             <a href="#"><i class="fa fa-trash"></i></a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form asp-action="Logout" asp-controller="Account" method="post">
+                    <button type="submit">
+                        <i class="fa fa-fw fa-user"></i>
+                    </button>
+                </form>
+            }
         </div>
     </div>
 
@@ -73,13 +81,23 @@
         </main>
     </div>
 
-    
 
+    @*<script src="~/js/menu.js"></script>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/menu.js"></script>
 </body>
 </html>
 
-
+<script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-200px";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+</script>

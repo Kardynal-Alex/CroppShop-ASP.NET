@@ -1,4 +1,78 @@
-﻿
-<div style="padding:150px 15px;">
-    <h1>Login form1</h1>
+﻿@model CroppShop.Models.AdditionalModel.IdentityViewModel
+<div style="padding:300px 15px;">
+    <div class="container">
+        <div class="col">
+            <div class="text-center">
+                <p>Уже зарегистрировани?</p>
+            </div>
+            <form asp-action="Login" asp-controller="Account" method="post">
+                <div class="form-group">
+                    <input asp-for="LoginViewModel.Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="LoginViewModel.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="LoginViewModel.Password" class="form-control" placeholder="Password" />
+                    <span asp-validation-for="LoginViewModel.Password" class="text-danger"></span>
+                </div>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div class="col">
+            <div class="text-center">
+                <p>Вы здесь первый раз?</p>
+            </div>
+            <form asp-action="Register" asp-controller="Account" method="post">
+                <div class="form-group">
+                    <input asp-for="RegisterViewModel.Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="RegisterViewModel.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="RegisterViewModel.Password" class="form-control" placeholder="Password" />
+                    <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="RegisterViewModel.PasswordConfirm" class="form-control" placeholder="Confirm Password" />
+                    <span asp-validation-for="RegisterViewModel.PasswordConfirm" class="text-danger"></span>
+                </div>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </div>
 </div>
+
+<style>
+    * {
+        box-sizing: border-box
+    }
+    input,
+    .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        margin: 5px 0;
+        opacity: 0.85;
+        display: inline-block;
+        font-size: 17px;
+        line-height: 20px;
+        text-decoration: none;
+    }
+
+    .col {
+        float: left;
+        width: 50%;
+        margin: auto;
+        padding: 0 50px;
+        margin-top: 6px;
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        
+</style>
