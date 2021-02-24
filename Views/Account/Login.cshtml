@@ -1,78 +1,168 @@
 ﻿@model CroppShop.Models.AdditionalModel.IdentityViewModel
+
 <div style="padding:300px 15px;">
     <div class="container">
         <div class="col">
-            <div class="text-center">
-                <p>Уже зарегистрировани?</p>
+            <h4>Уже зарегистрировани?</h4>
+            <div class="btn-login">
+                <button onclick="myFunction()" id="log-but" style="display:none">Войти</button>
             </div>
-            <form asp-action="Login" asp-controller="Account" method="post">
-                <div class="form-group">
-                    <input asp-for="LoginViewModel.Email" class="form-control" placeholder="Email" />
-                    <span asp-validation-for="LoginViewModel.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="LoginViewModel.Password" class="form-control" placeholder="Password" />
-                    <span asp-validation-for="LoginViewModel.Password" class="text-danger"></span>
-                </div>
-                <input type="submit" value="Login">
-            </form>
+            <div id="login-form">
+                <form asp-action="Login" asp-controller="Account" method="post">
+                    <div class="form-group">
+                        <input asp-for="LoginViewModel.Email" class="form-control" placeholder="Email"/>
+                        <span asp-validation-for="LoginViewModel.Email" class="text-danger"></span>
+                    </div>
+                    <div class="login-show-pass">
+                        <input type="password" asp-for="LoginViewModel.Password" class="form-control" placeholder="Password" id="pass1" />
+                        <i class="fa fa-eye showpwd" onClick="showPwd('pass1', this)">   </i>
+                        <span asp-validation-for="LoginViewModel.Password" class="text-danger"></span>
+                    </div>
+                    <input type="submit" value="Войти">
+                </form>
+            </div>
         </div>
         <div class="col">
-            <div class="text-center">
-                <p>Вы здесь первый раз?</p>
+            <h4>Вы здесь первый раз?</h4>
+            <div class="btn-regis">
+                <button onclick="myFunction()" id="regist-but">Создать аккаунт</button>
             </div>
-            <form asp-action="Register" asp-controller="Account" method="post">
-                <div class="form-group">
-                    <input asp-for="RegisterViewModel.Email" class="form-control" placeholder="Email" />
-                    <span asp-validation-for="RegisterViewModel.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="RegisterViewModel.Password" class="form-control" placeholder="Password" />
-                    <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="RegisterViewModel.PasswordConfirm" class="form-control" placeholder="Confirm Password" />
-                    <span asp-validation-for="RegisterViewModel.PasswordConfirm" class="text-danger"></span>
-                </div>
-                <input type="submit" value="Register">
-            </form>
+            <div id="regist-form" style="display:none">
+                <form asp-action="Register" asp-controller="Account" method="post">
+                    <div class="form-group">
+                        <input asp-for="RegisterViewModel.Email" class="form-control" placeholder="Email" />
+                        <span asp-validation-for="RegisterViewModel.Email" class="text-danger"></span>
+                    </div>
+                    <div class="regist-show-pass1">
+                        <input type="password" asp-for="RegisterViewModel.Password" class="form-control" placeholder="Password" id="pass2" />
+                        <i class="fa fa-eye showpwd" onClick="showPwd('pass2', this)">   </i>
+                        <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
+                    </div>
+                    <div class="regist-show-pass2">
+                        <input type="password" asp-for="RegisterViewModel.PasswordConfirm" class="form-control" placeholder="Confirm Password" id="pass3" />
+                        <i class="fa fa-eye showpwd" onClick="showPwd('pass3', this)">   </i>
+                        <span asp-validation-for="RegisterViewModel.PasswordConfirm" class="text-danger"></span>
+                    </div>
+                    <input type="submit" value="Создать аккаунт">
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 <style>
+    .btn-login button {
+        border: 4px solid black;
+        background-color: white;
+        color: black;
+        width: 70%;
+        margin-left: 130px;
+        font-size: 18px;
+        height: 60px;
+        cursor: pointer;
+    }
+    .btn-regis button {
+        border: 4px solid black;
+        background-color: white;
+        color: black;
+        width: 70%;
+        margin-left: 130px;
+        font-size: 18px;
+        cursor: pointer;
+        height:60px;
+    }
+        .btn-login button:hover {
+            background-color: black;
+            color: white;
+        }
+    .btn-regis button:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .col h4 {
+        margin-left: 330px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+
+    .regist-show-pass2 {
+        position: relative;
+        width: 100%;
+    }
+
+        .regist-show-pass2 i {
+            position: absolute;
+            padding-top: 25px;
+            margin-left: -30px;
+        }
+
+    .regist-show-pass1 {
+        position: relative;
+        width: 100%;
+    }
+
+        .regist-show-pass1 i {
+            position: absolute;
+            padding-top: 25px;
+            margin-left: -30px;
+        }
+
+    .login-show-pass {
+        position: relative;
+        width: 100%;
+    }
+
+        .login-show-pass i {
+            position: absolute;
+            padding-top: 25px;
+            margin-left: -30px;
+        }
+
     * {
         box-sizing: border-box
     }
+
     input,
     .btn {
-        width: 100%;
+        width: 70%;
         padding: 12px;
         border: none;
         border-radius: 4px;
         margin: 5px 0;
+        margin-left: 130px;
         opacity: 0.85;
         display: inline-block;
-        font-size: 17px;
+        font-size: 19px;
         line-height: 20px;
         text-decoration: none;
+        position: center;
+        height: 60px;
     }
 
     .col {
         float: left;
         width: 50%;
         margin: auto;
-        padding: 0 50px;
+        padding: 0 70px;
         margin-top: 6px;
     }
 
     input[type=submit] {
-        background-color: #4CAF50;
+        border:4px solid black;
+        background-color: black;
         color: white;
         cursor: pointer;
+        margin-left: 130px;
+        position: center;
+        width: 70%;
     }
+
         input[type=submit]:hover {
-            background-color: #45a049;
+            background-color: white;
+            color:black;
+            position: center;
+            margin-left: 130px;
+            width: 70%;
         }
-        
 </style>
