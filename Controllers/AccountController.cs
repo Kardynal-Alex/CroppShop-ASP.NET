@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +18,7 @@ namespace CroppShop.Controllers
             userManager = _userManager;
             signInManager = _signInManager;
         }
+        public IActionResult Error() => View();
         public IActionResult ConfirmEmailContentView()
         {
             return View();
@@ -48,11 +47,11 @@ namespace CroppShop.Controllers
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
-                return View("Error");
+                return View("Error", "Account");
             var user = await userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return View("Error");
+                return View("Error", "Account");
             }
             var result = await userManager.ConfirmEmailAsync(user, code);
             await userManager.AddToRoleAsync(user, "user");
@@ -102,11 +101,6 @@ namespace CroppShop.Controllers
             return RedirectToAction("Index", "Home");
         }
         [AllowAnonymous]
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
@@ -115,7 +109,7 @@ namespace CroppShop.Controllers
                 var user = await userManager.FindByEmailAsync(model.Email);
                 if (user == null && !(await userManager.IsEmailConfirmedAsync(user)))
                 {
-                    return View("ForgotPasswordConfirmation");
+                    return View("ForgotPasswordConfirmation", "Account");
                 }
                 var code = await userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code },
@@ -123,14 +117,14 @@ namespace CroppShop.Controllers
                 RegisterConfirmEmail emailService = new RegisterConfirmEmail();
                 await emailService.SendEmailAsync(model.Email,
                     "Reset password", $"To reset your password, follow the <a href='{callbackUrl}'>link</a>");
-                return View("ForgotPasswordConfirmation");
+                return RedirectToAction("ConfirmEmailContentView", "Account");
             }
             return View(model);
         }
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
         {
-            return code == null ? View("Error") : View();
+            return code == null ? View("Error", "Account") : View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -141,12 +135,12 @@ namespace CroppShop.Controllers
                 var user = await userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    return View("ResetPasswordConfirmation");
+                    return View("ResetPasswordConfirmation", "Account");
                 }
                 var result = await userManager.ResetPasswordAsync(user, model.Code, model.Password);
                 if (result.Succeeded)
                 {
-                    return View("ResetPasswordConfirmation");
+                    return View("ResetPasswordConfirmation", "Account");
                 }
             }
             return View(model);

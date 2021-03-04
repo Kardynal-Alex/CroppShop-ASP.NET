@@ -21,9 +21,9 @@
                     <input type="submit" value="Войти">
                 </form>
                 <div class="forget-text">
-                    <a asp-action="" asp-controller="Account">
+                    <button onclick="document.getElementById('forgot-pass').style.display='block'">
                         <p>Я забув (-ла) свій пароль</p>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -53,6 +53,7 @@
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("ForgotPassword")
 </div>
 <style>
     body {
@@ -66,12 +67,17 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
-        .forget-text a {
+        .forget-text button {
             color: black;
+            text-decoration:underline;
+            background-color: transparent;
+            border: medium none;
         }
 
-            .forget-text a:hover {
+            .forget-text button:hover {
                 color: green;
+                background-color: transparent;
+                border: medium none;
             }
 
     .btn-login button {
@@ -189,8 +195,3 @@
             width: 70%;
         }
 </style>
-@section scripts
-{
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
