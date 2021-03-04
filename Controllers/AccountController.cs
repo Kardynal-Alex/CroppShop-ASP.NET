@@ -20,6 +20,10 @@ namespace CroppShop.Controllers
             userManager = _userManager;
             signInManager = _signInManager;
         }
+        public IActionResult ConfirmEmailContentView()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
@@ -35,7 +39,7 @@ namespace CroppShop.Controllers
                     RegisterConfirmEmail email = new RegisterConfirmEmail();
                     await email.SendEmailAsync(registerViewModel.Email,
                         "Confirm your account", $"Confirm registration by following the <a href='{callbackUrl}'>link</a>");
-                    return Content("To complete the registration, check your e-mail and follow the link provided in the letter");
+                    return RedirectToAction("ConfirmEmailContentView", "Account");
                 }
             }
             return View("Login", "Account");
@@ -55,7 +59,7 @@ namespace CroppShop.Controllers
             if (result.Succeeded)
                 return RedirectToAction("Login", "Account");
             else
-                return View("Error");
+                return View("Login", "Account");
         }
         public IActionResult Login(string returnUrl = null)
         {
@@ -88,7 +92,7 @@ namespace CroppShop.Controllers
                     ModelState.AddModelError("Email", "Неправильный логин или пароль");
                 }
             }
-            return View(loginViewModel);
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
