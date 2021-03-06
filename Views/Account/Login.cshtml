@@ -9,16 +9,16 @@
             </div>
             <div id="login-form">
                 <form asp-action="Login" asp-controller="Account" method="post">
-                    <div class="form-group">
-                        <input asp-for="LoginViewModel.Email" class="form-control" placeholder="Email" />
-                        <span asp-validation-for="LoginViewModel.Email" class="text-danger"></span>
+                    <div class="input1">
+                        <div class="form-group">
+                            <input asp-for="LoginViewModel.Email" class="form-control" placeholder="Email" required/>
+                        </div>
+                        <div class="login-show-pass">
+                            <input type="password" asp-for="LoginViewModel.Password" class="form-control" placeholder="Password" id="pass1" required minlength="6"/>
+                            <i class="fa fa-eye showpwd" onClick="showPwd('pass1', this)">   </i>
+                        </div>
+                        <input type="submit" value="Войти" />
                     </div>
-                    <div class="login-show-pass">
-                        <input type="password" asp-for="LoginViewModel.Password" class="form-control" placeholder="Password" id="pass1" />
-                        <i class="fa fa-eye showpwd" onClick="showPwd('pass1', this)">   </i>
-                        <span asp-validation-for="LoginViewModel.Password" class="text-danger"></span>
-                    </div>
-                    <input type="submit" value="Войти">
                 </form>
                 <div class="forget-text">
                     <button onclick="document.getElementById('forgot-pass').style.display='block'">
@@ -34,21 +34,20 @@
             </div>
             <div id="regist-form" style="display:none">
                 <form asp-action="Register" asp-controller="Account" method="post">
-                    <div class="form-group">
-                        <input asp-for="RegisterViewModel.Email" class="form-control" placeholder="Email" />
-                        <span asp-validation-for="RegisterViewModel.Email" class="text-danger"></span>
+                    <div class="input2">
+                        <div class="form-group">
+                            <input asp-for="RegisterViewModel.Email" class="form-control" placeholder="Email" required/>
+                        </div>
+                        <div class="regist-show-pass1">
+                            <input type="password" asp-for="RegisterViewModel.Password" class="form-control" placeholder="Password" id="pass2" required minlength="6"/>
+                            <i class="fa fa-eye showpwd" onClick="showPwd('pass2', this)">   </i>
+                        </div>
+                        <div class="regist-show-pass2">
+                            <input type="password" asp-for="RegisterViewModel.PasswordConfirm" class="form-control" placeholder="Confirm Password" id="pass3" required minlength="6"/>
+                            <i class="fa fa-eye showpwd" onClick="showPwd('pass3', this)">   </i>
+                        </div>
+                        <input type="submit" value="Создать аккаунт" />
                     </div>
-                    <div class="regist-show-pass1">
-                        <input type="password" asp-for="RegisterViewModel.Password" class="form-control" placeholder="Password" id="pass2" />
-                        <i class="fa fa-eye showpwd" onClick="showPwd('pass2', this)">   </i>
-                        <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
-                    </div>
-                    <div class="regist-show-pass2">
-                        <input type="password" asp-for="RegisterViewModel.PasswordConfirm" class="form-control" placeholder="Confirm Password" id="pass3" />
-                        <i class="fa fa-eye showpwd" onClick="showPwd('pass3', this)">   </i>
-                        <span asp-validation-for="RegisterViewModel.PasswordConfirm" class="text-danger"></span>
-                    </div>
-                    <input type="submit" value="Создать аккаунт">
                 </form>
             </div>
         </div>
@@ -59,139 +58,38 @@
     body {
         background: linear-gradient(to right, white 50%, #e9e9e9 50%);
     }
-
-    .forget-text {
-        text-align: center;
-        text-decoration: underline;
-        font-size: 16px;
-        font-family: Arial, Helvetica, sans-serif;
+    .input1 input:required:focus:valid {
+        background: no-repeat 95% 50% lightgreen;
+        background-size: 25px;
     }
 
-        .forget-text button {
-            color: black;
-            text-decoration:underline;
-            background-color: transparent;
-            border: medium none;
-        }
-
-            .forget-text button:hover {
-                color: green;
-                background-color: transparent;
-                border: medium none;
-            }
-
-    .btn-login button {
-        border: 4px solid black;
-        background-color: white;
-        color: black;
-        width: 70%;
-        margin-left: 130px;
-        font-size: 18px;
-        height: 60px;
-        cursor: pointer;
+    .input1 input:focus:invalid {
+        background: no-repeat 95% 50% lightsalmon;
+        background-size: 25px;
     }
 
-    .btn-regis button {
-        border: 4px solid black;
-        background-color: white;
-        color: black;
-        width: 70%;
-        margin-left: 130px;
-        font-size: 18px;
-        cursor: pointer;
-        height: 60px;
+    .input2 input:required:focus:valid {
+        background: no-repeat 95% 50% lightgreen;
+        background-size: 25px;
     }
 
-    .btn-login button:hover {
-        background-color: black;
-        color: white;
+    .input2 input:required:focus:invalid {
+        background: no-repeat 95% 50% lightsalmon;
+        background-size: 25px;
     }
 
-    .btn-regis button:hover {
-        background-color: black;
-        color: white;
-    }
-
-    .col h4 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        text-align: center;
-    }
-
-    .regist-show-pass2 {
-        position: relative;
-        width: 100%;
-    }
-
-        .regist-show-pass2 i {
-            position: absolute;
-            padding-top: 25px;
-            margin-left: -30px;
-        }
-
-    .regist-show-pass1 {
-        position: relative;
-        width: 100%;
-    }
-
-        .regist-show-pass1 i {
-            position: absolute;
-            padding-top: 25px;
-            margin-left: -30px;
-        }
-
-    .login-show-pass {
-        position: relative;
-        width: 100%;
-    }
-
-        .login-show-pass i {
-            position: absolute;
-            padding-top: 25px;
-            margin-left: -30px;
-        }
-
-    * {
-        box-sizing: border-box
-    }
-
-    input,
-    .btn {
-        width: 70%;
-        padding: 12px;
-        border: none;
-        border-radius: 4px;
-        margin: 5px 0;
-        margin-left: 130px;
-        opacity: 0.85;
-        display: inline-block;
-        font-size: 19px;
-        line-height: 20px;
-        text-decoration: none;
-        height: 60px;
-    }
-
-    .col {
-        float: left;
-        width: 50%;
-        margin: auto;
-        padding: 0 70px;
-        margin-top: 6px;
-    }
-
-    input[type=submit] {
-        border: 4px solid black;
-        background-color: black;
-        color: white;
-        cursor: pointer;
-        margin-left: 130px;
-        width: 70%;
-    }
-
-        input[type=submit]:hover {
-            background-color: white;
-            color: black;
-            margin-left: 130px;
-            width: 70%;
-        }
 </style>
+<script>
+    var password = document.getElementById('pass2'),
+        confirm_password = document.getElementById('pass3');
+
+    function validatePassword() {
+        if (password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+    password.oninput = validatePassword;
+    confirm_password.oninput = validatePassword;
+</script>

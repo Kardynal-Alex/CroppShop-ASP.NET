@@ -5,6 +5,7 @@ namespace CroppShop.Models.AccountModel
     public class ResetPasswordViewModel
     {
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
