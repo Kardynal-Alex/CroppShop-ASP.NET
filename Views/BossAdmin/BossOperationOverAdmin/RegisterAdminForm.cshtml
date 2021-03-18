@@ -1,0 +1,117 @@
+﻿@model CroppShop.Models.AccountModel.RegisterViewModel
+
+<div id="regist-admin-form" class="modal">
+    <span onclick="document.getElementById('regist-admin-form').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <form asp-controller="Account" asp-action="RegisterAdmin" class="modal-content">
+        <div class="input1">
+            <div class="container">
+                <h1>Register Admin</h1>
+                <div class="form-group">
+                    <input type="text" asp-for="Email" placeholder="Електронна пошта" name="email" required />
+                </div>
+                <div class="form-group">
+                    <input type="password" asp-for="Password" placeholder="Пароль"  id="adminpass" required />
+                    <i class="fa fa-eye showpwd" onClick="showPwd('adminpass', this)">   </i>
+                </div>
+                <input type="submit" value="Register">
+            </div>
+        </div>
+    </form>
+</div>
+<script src="~/js/login.js"></script>
+<script>
+    var modal = document.getElementById('regist-admin-form');
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    function showPwd(id, el) {
+        let x = document.getElementById(id);
+        if (x.type === "password") {
+            x.type = "text";
+            el.className = 'fa fa-eye-slash showpwd';
+        } else {
+            x.type = "password";
+            el.className = 'fa fa-eye showpwd';
+        }
+    }
+</script>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+    }
+
+    .cancelbtn {
+        float: left;
+        width: 50%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+        .container h1 {
+            position: center;
+            text-align: center;
+        }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(80,90,100,0.6);
+        padding-top: 50px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        border: 1px solid #888;
+        width: 40%;
+        height: auto;
+    }
+
+
+    .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #f1f1f1;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #f44336;
+            cursor: pointer;
+        }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .form-group i {
+        position: absolute;
+        padding-top: 25px;
+        margin-left: -30px;
+    }
+    
+</style>

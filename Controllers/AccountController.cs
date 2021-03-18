@@ -24,6 +24,21 @@ namespace CroppShop.Controllers
             return View();
         }
         [HttpPost]
+        public async Task<IActionResult> RegisterAdmin(LoginViewModel registerViewModel)
+        {
+            if (ModelState.IsValid) 
+            {
+                User user = new User { Email = registerViewModel.Email, UserName = registerViewModel.Email, Role = "admin" };
+                var result = await userManager.CreateAsync(user, registerViewModel.Password);
+                if (result.Succeeded) 
+                {
+                    await userManager.AddToRoleAsync(user, "admin");
+                    return RedirectToAction("AdminList", "BossAdmin");
+                }
+            }
+            return RedirectToAction("AdminList", "BossAdmin");
+        }
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid)

@@ -12,5 +12,9 @@ namespace CroppShop.Controllers
         {
             return View();
         }
+        public IActionResult AdminList()
+        {
+            return View("BossOperationOverAdmin/AdminList");
+        }
     }
 }
