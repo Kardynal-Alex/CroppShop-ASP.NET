@@ -2,7 +2,7 @@
 
 namespace CroppShop.Models.AccountModel
 {
-    public class RegisterViewModel
+    public class AdminRegisterViewModel
     {
         [Required]
         [EmailAddress]
@@ -14,9 +14,5 @@ namespace CroppShop.Models.AccountModel
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        [DataType(DataType.Password)]
-        public string PasswordConfirm { get; set; }
     }
 }

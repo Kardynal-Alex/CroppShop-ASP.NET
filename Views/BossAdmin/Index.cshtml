@@ -1,8 +1,11 @@
 ﻿<div style="padding-top:200px;">
-    <div class="container">
-        <div class="row">
-            <a asp-action="AdminList" asp-controller="BossAdmin" class="btn">Register Admin</a>
-        </div>
+    <div class="general-container">
+        @if (User.IsInRole("boss"))
+        {
+            <div class="row">
+                <a asp-action="AdminList" asp-controller="BossAdmin" class="btn">Register Admin</a>
+            </div>
+        }
         <div class="row">
             <div class="semi-col">
                 <a asp-action="" asp-controller="" class="btn">Man</a>
@@ -11,20 +14,23 @@
                 <a asp-action="" asp-controller="" class="btn">Woman</a>
             </div>
         </div>
+        <div class="row">
+            <a asp-action="" asp-controller="" class="btn">W</a>
+        </div>
 
     </div>
 </div>
 
 <style>
-    .container{
+    .general-container{
         margin-left:20%;
         margin-right:20%;
     }
-        .container .semi-col {
+        .general-container .semi-col {
             width: 50%;
             float: left;
         }
-        .container .btn {
+        .general-container .btn {
             display: block;
             padding: 12px;
             border: none;
@@ -41,7 +47,7 @@
             cursor: pointer;
             width: 100%;
         }
-            .container .btn:hover {
+            .general-container .btn:hover {
                 display: block;
                 padding: 12px;
                 margin: 5px 0;
@@ -50,7 +56,6 @@
                 line-height: 20px;
                 text-decoration: none;
                 height: auto;
-
                 border: 4px solid black;
                 background-color: white;
                 color: black;

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/menu.css" />
-    <link rel="stylesheet" href="~/css/login.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -68,7 +67,14 @@
         }
         <div class="topnav-right">
             <div class="dropdown1">
-                <a asp-action="Login" asp-controller="Account"><i class="fa fa-fw fa-user"></i></a>
+                @if (User.Identity.IsAuthenticated == true) 
+                {
+                    <a><i class="fa fa-fw fa-user"></i></a>
+                }
+                else 
+                {
+                    <a asp-action="Login" asp-controller="Account"><i class="fa fa-fw fa-user"></i></a>
+                }
 
                 @if (User.Identity.IsAuthenticated == true)
                 {

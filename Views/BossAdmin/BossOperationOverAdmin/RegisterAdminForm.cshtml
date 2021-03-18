@@ -1,43 +1,32 @@
-﻿@model CroppShop.Models.AccountModel.RegisterViewModel
+﻿@model CroppShop.Models.AdditionalModel.AdminViewModel
 
 <div id="regist-admin-form" class="modal">
     <span onclick="document.getElementById('regist-admin-form').style.display='none'" class="close" title="Close Modal">&times;</span>
     <form asp-controller="Account" asp-action="RegisterAdmin" class="modal-content">
         <div class="input1">
-            <div class="container">
+            <div class="register-admin-container">
                 <h1>Register Admin</h1>
-                <div class="form-group">
-                    <input type="text" asp-for="Email" placeholder="Електронна пошта" name="email" required />
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" asp-for="AdminRegisterViewModel.Email" placeholder="Електронна пошта" name="Email" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" asp-for="AdminRegisterViewModel.Surname" placeholder="Фамилия" name="Surname" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" asp-for="AdminRegisterViewModel.Name" placeholder="Имя" name="Name" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" asp-for="AdminRegisterViewModel.Password" name="Password" placeholder="Пароль" id="adminpass" required />
+                        <i class="fa fa-eye showpwd" onClick="showPwd('adminpass', this)">   </i>
+                    </div>
+                    <input type="submit" value="Register">
                 </div>
-                <div class="form-group">
-                    <input type="password" asp-for="Password" placeholder="Пароль"  id="adminpass" required />
-                    <i class="fa fa-eye showpwd" onClick="showPwd('adminpass', this)">   </i>
-                </div>
-                <input type="submit" value="Register">
             </div>
         </div>
     </form>
 </div>
 <script src="~/js/login.js"></script>
-<script>
-    var modal = document.getElementById('regist-admin-form');
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    function showPwd(id, el) {
-        let x = document.getElementById(id);
-        if (x.type === "password") {
-            x.type = "text";
-            el.className = 'fa fa-eye-slash showpwd';
-        } else {
-            x.type = "password";
-            el.className = 'fa fa-eye showpwd';
-        }
-    }
-</script>
-
 <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
@@ -56,15 +45,16 @@
         float: left;
         width: 50%;
     }
+    
 
-    .container {
+    .register-admin-container {
         padding: 16px;
     }
 
-        .container h1 {
-            position: center;
-            text-align: center;
-        }
+    .register-admin-container h1 {
+        position: center;
+        text-align: center;
+    }
 
     .modal {
         display: none;
@@ -113,5 +103,42 @@
         padding-top: 25px;
         margin-left: -30px;
     }
-    
+    .register-admin-container .col {
+        margin-left: 30%;
+        width: 70%;
+        justify-content: center;
+        align-items: center;
+    }
+    .register-admin-container input,
+    .btn {
+        background-color: #D0D0D0;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        margin: 5px 0;
+        opacity: 0.85;
+        display: inline-block;
+        font-size: 19px;
+        line-height: 20px;
+        text-decoration: none;
+        height: 60px;
+        width: 60%;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .register-admin-container input[type=submit] {
+            border: 4px solid black;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            width: 60%;
+        }
+
+            .register-admin-container input[type=submit]:hover {
+                background-color: white;
+                color: black;
+                text-align: center;
+                width: 60%;
+            }
 </style>

@@ -13,22 +13,48 @@ namespace CroppShop.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
-        public AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager)
+        private readonly RoleManager<IdentityRole> roleManager;
+        public AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager, RoleManager<IdentityRole> _roleManager)
         {
             userManager = _userManager;
             signInManager = _signInManager;
+            roleManager = _roleManager;
         }
         public IActionResult Error() => View();
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            User user = await userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                await userManager.DeleteAsync(user);
+            }
+            return RedirectToAction("AdminList", "BossAdmin");
+        }
         public IActionResult ConfirmEmailContentView()
         {
             return View();
         }
+        /*public async Task Initialize()
+        {
+            string userEmail = "alexandrkardynal@gmail.com";
+            string userPassword = "alex60327";
+            if (await userManager.FindByNameAsync(userEmail) == null)
+            {
+                User user = new User { Email = userEmail, Surname = "Kardynal", Name = "Oleksandr", UserName = userEmail, Role = "boss" };
+                var result = await userManager.CreateAsync(user, userPassword);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "boss");
+                }
+            }
+        }*/
         [HttpPost]
-        public async Task<IActionResult> RegisterAdmin(LoginViewModel registerViewModel)
+        public async Task<IActionResult> RegisterAdmin(AdminRegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid) 
             {
-                User user = new User { Email = registerViewModel.Email, UserName = registerViewModel.Email, Role = "admin" };
+                User user = new User { Email = registerViewModel.Email, UserName = registerViewModel.Email, Surname = registerViewModel.Surname, Name = registerViewModel.Name, Role = "admin" };
                 var result = await userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded) 
                 {
@@ -43,7 +69,7 @@ namespace CroppShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = registerViewModel.Email, UserName = registerViewModel.Email, Role = "user" };
+                User user = new User { Email = registerViewModel.Email, UserName = registerViewModel.Email, Surname = registerViewModel.Surname, Name = registerViewModel.Name, Role = "user" };
                 var result = await userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded)
                 {
