@@ -1,6 +1,7 @@
 ﻿@model string
 
 <div id="@Model" class="modal">
+    <span onclick="document.getElementById('@Model').style.display='none'" class="close" title="Close Modal">&times;</span>
     <div class="modal-content">
         <div class="container">
             <h1>Delete Administrator</h1>
@@ -10,7 +11,7 @@
                     <div class="col">
                         <button type="button" onclick="document.getElementById('@Model').style.display='none'" class="cancelbtn">Cancel</button>
                     </div>
-                    <div class="col">  
+                    <div class="col">
                         <form asp-action="Delete" asp-controller="Account" asp-route-id="@Model">
                             <button type="submit" class="deletebtn">Delete</button>
                         </form>
@@ -21,7 +22,7 @@
     </div>
 </div>
 <script>
-    var modal = document.getElementById(@Model);
+    var modal = document.getElementById('@Model');
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
@@ -50,24 +51,20 @@
   float: left;
 }
 
-/* Add a color to the cancel button */
    .container .clearfix .cancelbtn {
         background-color: #ccc;
         color: black;
     }
 
-/* Add a color to the delete button */
     .container .clearfix .deletebtn {
         background-color: #ff0000;
     }
 
-/* Add padding and center-align text to the container */
 .container {
   padding: 16px;
   text-align: center;
 }
 
-/* The Modal (background) */
     .modal {
         display: none; 
         position: fixed;
@@ -82,7 +79,6 @@
         padding-top: 50px;
     }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto 15% auto;
@@ -90,12 +86,6 @@
   width: 50%; 
 }
 
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-/* Clear floats */
 .clearfix::after {
   content: "";
   clear: both;
