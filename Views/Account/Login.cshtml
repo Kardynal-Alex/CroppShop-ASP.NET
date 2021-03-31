@@ -1,5 +1,6 @@
 ﻿@model CroppShop.Models.AdditionalModel.IdentityViewModel
 <link rel="stylesheet" href="~/css/login.css" />
+<link rel="stylesheet" href="~/css/adaptive.css" />
 
 <div style="padding:300px 15px;">
     <div class="container-identity">
@@ -63,60 +64,7 @@
     </div>
     @await Html.PartialAsync("ForgotPassword")
 </div>
-<style>
-    .container-identity .input2 .row {
-        width: 70%;
-        margin-left: 15%;
-    }
 
-    .container-identity .input2 .semi-regist-col1 input {
-        width: 49%;
-        float: left;
-        margin: auto;
-        position: relative;
-        margin: 5px 0;
-        border-radius: 0;
-    }
-
-    .container-identity .input2 .semi-regist-col2 input {
-        width: 49%;
-        float: right;
-        margin: auto;
-        position: relative;
-        margin: 5px 0;
-        border-radius: 0;
-    }
-
-    .container-identity input,
-    .container-identity button {
-        border-radius: 0;
-    }
-    
-</style>
-<style>
-    body {
-        background: linear-gradient(to right, white 50%, #e9e9e9 50%);
-    }
-    .container-identity .input1 input:required:focus:valid {
-        background: no-repeat 95% 50% lightgreen;
-        background-size: 25px;
-    }
-
-    .container-identity .input1 input:focus:invalid {
-        background: no-repeat 95% 50% lightsalmon;
-        background-size: 25px;
-    }
-
-    .container-identity .input2 input:required:focus:valid {
-        background: no-repeat 95% 50% lightgreen;
-        background-size: 25px;
-    }
-
-    .container-identity .input2 input:required:focus:invalid {
-        background: no-repeat 95% 50% lightsalmon;
-        background-size: 25px;
-    }
-</style>
 <script>
     var password = document.getElementById('pass2'),
         confirm_password = document.getElementById('pass3');

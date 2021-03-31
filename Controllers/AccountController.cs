@@ -35,20 +35,6 @@ namespace CroppShop.Controllers
         {
             return View();
         }
-        /*public async Task Initialize()
-        {
-            string userEmail = "alexandrkardynal@gmail.com";
-            string userPassword = "alex60327";
-            if (await userManager.FindByNameAsync(userEmail) == null)
-            {
-                User user = new User { Email = userEmail, Surname = "Kardynal", Name = "Oleksandr", UserName = userEmail, Role = "boss" };
-                var result = await userManager.CreateAsync(user, userPassword);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, "boss");
-                }
-            }
-        }*/
         [HttpPost]
         public async Task<IActionResult> RegisterAdmin(AdminRegisterViewModel registerViewModel)
         {

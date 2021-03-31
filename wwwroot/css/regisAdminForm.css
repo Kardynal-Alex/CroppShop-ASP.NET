@@ -1,5 +1,4 @@
-﻿
-body {
+﻿body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -7,25 +6,27 @@ body {
     box-sizing: border-box;
 }
 
- .cancelbtn {
+.cancelbtn {
     padding: 14px 20px;
     background-color: #f44336;
 }
 
- .cancelbtn {
+.cancelbtn {
     float: left;
     width: 50%;
 }
-.container {
+
+
+.register-admin-container {
     padding: 16px;
 }
 
- .container h1 {
-    position: center;
-    text-align: center;
-}
+    .register-admin-container h1 {
+        position: center;
+        text-align: center;
+    }
 
- .modal {
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -38,12 +39,12 @@ body {
     padding-top: 50px;
 }
 
- .modal-content {
+.modal-content {
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
     width: 40%;
-    height: 270px;
+    height: auto;
 }
 
 
@@ -56,31 +57,33 @@ body {
     color: #f1f1f1;
 }
 
- .close:hover,
- .close:focus {
-    color: #f44336;
-    cursor: pointer;
-}
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+        cursor: pointer;
+    }
 
- .clearfix::after {
+.clearfix::after {
     content: "";
     clear: both;
     display: table;
 }
 
-.modal .forgot-input .container h1 {
-    text-align: center;
+.form-group i {
+    position: absolute;
+    padding-top: 25px;
+    margin-left: -30px;
 }
 
-.modal .forgot-input .container .form-group {
-    margin-left: 20%;
-    width: 60%;
+.register-admin-container .col {
+    margin-left: 10%;
+    width: 80%;
     justify-content: center;
     align-items: center;
 }
 
-
-.modal .forgot-input input {
+.register-admin-container  input,
+.register-admin-container .btn {
     background-color: #D0D0D0;
     padding: 12px;
     border: none;
@@ -98,17 +101,19 @@ body {
     border-radius: 0;
 }
 
-    .modal .forgot-input input[type=submit] {
-        border: 4px solid black;
-        background-color: black;
-        color: white;
-        cursor: pointer;
+
+.register-admin-container input[type=submit] {
+    border: 4px solid black;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+    .register-admin-container input[type=submit]:hover {
+        background-color: white;
+        color: black;
+        text-align: center;
         width: 100%;
     }
 
-.modal input[type=submit]:hover {
-    background-color: white;
-    color: black;
-    text-align: center;
-    width: 100%;
-}

@@ -1,0 +1,31 @@
+﻿@media screen and (max-width: 1200px) {
+    #regist-admin-form .register-admin-container .col {
+        margin-left: 0%;
+        margin-right:0%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    #regist-admin-form .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        border: 1px solid #888;
+        width: 80%;
+        height: auto;
+    }
+    #regist-admin-form .register-admin-container .col input {
+        width: 100%;
+    }
+  
+}
+@media screen and (max-width: 1000px) {
+    #forgot-pass .modal-content {
+        width: 80%;
+    }
+
+    #forgot-pass .input1 .container .form-group {
+        margin-left: 0;
+        width: 80%;
+    }
+
+}
