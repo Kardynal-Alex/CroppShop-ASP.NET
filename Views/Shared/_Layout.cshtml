@@ -11,79 +11,82 @@
 <body>
     <div id="navbar">
         <div class="header">
-            <img src="~/pictures/Cropp_logo_black.jpg" style="width:230px;height:70px;margin-top:10px;"/>
+            <img src="~/pictures/Cropp_logo_black.jpg" style="width:230px;height:70px;margin-top:10px;" />
         </div>
-        <a href="#home">Home</a>
-        <a href="#news">News</a>
-        <div class="dropdown">
-            <button class="dropbtn">
-                ЖЕНЩИНА
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <div class="row">
-                    <div class="column1">
-                        <h3>ОДЕЖДА</h3>
-                        <a href="#">Link 111111</a>
-                        <a href="#">Link esrt2</a>
-                        <a href="#">Link 3</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                    <div class="column2">
-                        <h3>АКСЕССУАРЫ</h3>
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+        <div class="topnav-left">
+            <a href="#home">Home</a>
+            <a href="#news">News</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    ЖЕНЩИНА
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="row">
+                        <div class="column1">
+                            <h3>ОДЕЖДА</h3>
+                            <a href="#">Link 111111</a>
+                            <a href="#">Link esrt2</a>
+                            <a href="#">Link 3</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                        <div class="column2">
+                            <h3>АКСЕССУАРЫ</h3>
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">
-                МУЖЧИНА
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <div class="row">
-                    <div class="column1">
-                        <h3>ОДЕЖДА</h3>
-                        <a href="#">Link 11111</a>
-                        <a href="#">Link 2111</a>
-                        <a href="#">Link 3</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                    <div class="column2">
-                        <h3>АКСЕССУАРЫ</h3>
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    МУЖЧИНА
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="row">
+                        <div class="column1">
+                            <h3>ОДЕЖДА</h3>
+                            <a href="#">Link 11111</a>
+                            <a href="#">Link 2111</a>
+                            <a href="#">Link 3</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                        <div class="column2">
+                            <h3>АКСЕССУАРЫ</h3>
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            @if (User.IsInRole("boss") || User.IsInRole("admin"))
+            {
+                <a asp-action="Index" asp-controller="BossAdmin">For Admin</a>
+            }
         </div>
-        @if (User.IsInRole("boss") || User.IsInRole("admin"))
-        {
-            <a asp-action="Index" asp-controller="BossAdmin">For Admin</a>
-        }
         <div class="topnav-right">
             <div class="dropdown1">
-                @if (User.Identity.IsAuthenticated == true) 
+                <div class="header-a">
+                @if (User.Identity.IsAuthenticated == true)
                 {
                     <a><i class="fa fa-fw fa-user"></i></a>
                 }
-                else 
+                else
                 {
                     <a asp-action="Login" asp-controller="Account"><i class="fa fa-fw fa-user"></i></a>
                 }
-
+                </div>
                 @if (User.Identity.IsAuthenticated == true)
                 {
                     <div class="dropdown-content1">
-                        <a href="#">Link 1</a>
+                        <a href="#">Link 111</a>
                         <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <a href="#">Link 311</a>
                         <form asp-action="Logout" asp-controller="Account" method="post">
-                            <input type="submit" value="Выйти" />
+                            <input type="submit" value="Выйти cab" />
                         </form>
                     </div>
                 }
@@ -121,3 +124,6 @@
         prevScrollpos = currentScrollPos;
     }
 </script>
+<style>
+
+</style>
